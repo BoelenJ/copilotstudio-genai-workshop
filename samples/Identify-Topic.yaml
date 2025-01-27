@@ -1,0 +1,73 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - identify
+
+  actions:
+    - kind: SendActivity
+      id: sendActivity_oNVdld
+      activity: To identify you as a customer, we need to ask you for some information.
+
+    - kind: Question
+      id: question_TiCaw8
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Email
+      prompt: What is your email address?
+      entity: EmailPrebuiltEntity
+
+    - kind: Question
+      id: question_rmlIYK
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.PostalCode
+      prompt: What is your postal code?
+      entity: NumberPrebuiltEntity
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_x6O5Oq
+      input:
+        binding:
+          text: =Topic.Email
+          text_1: =Text(Topic.PostalCode)
+
+      output:
+        binding:
+          customerid: Topic.CustomerId
+          customername: Topic.CustomerName
+
+      flowId: 93ef5d2b-b2dc-ef11-a72f-00224826bd7d
+
+    - kind: ConditionGroup
+      id: conditionGroup_BPjamH
+      conditions:
+        - id: conditionItem_BCdabl
+          condition: =Topic.CustomerName <> "NOTFOUND"
+          actions:
+            - kind: SendActivity
+              id: sendActivity_SxJT5h
+              activity: Welcome, {Topic.CustomerName}!
+
+            - kind: SetVariable
+              id: setVariable_HrBBvT
+              variable: Global.CustomerName
+              value: =Topic.CustomerName
+
+            - kind: SetVariable
+              id: setVariable_5vElfJ
+              variable: Global.CustomerId
+              value: =Topic.CustomerId
+
+      elseActions:
+        - kind: SendActivity
+          id: sendActivity_egTQKC
+          activity: We are unable to find your customer details, please contact our support organization.
+
+        - kind: BeginDialog
+          id: L38IOc
+          dialog: cr78c_contosoOutdoorAssistant.topic.Escalate
