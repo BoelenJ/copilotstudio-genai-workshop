@@ -53,16 +53,6 @@ beginDialog:
               id: sendActivity_SxJT5h
               activity: Welcome, {Topic.CustomerName}!
 
-            - kind: SetVariable
-              id: setVariable_HrBBvT
-              variable: Global.CustomerName
-              value: =Topic.CustomerName
-
-            - kind: SetVariable
-              id: setVariable_5vElfJ
-              variable: Global.CustomerId
-              value: =Topic.CustomerId
-
       elseActions:
         - kind: SendActivity
           id: sendActivity_egTQKC
@@ -70,4 +60,17 @@ beginDialog:
 
         - kind: BeginDialog
           id: L38IOc
-          dialog: cr78c_contosoOutdoorAssistant.topic.Escalate
+          dialog: cr78c_demoContosoOutdoor.topic.Escalate
+
+inputType: {}
+outputType:
+  properties:
+    CustomerId:
+      displayName: CustomerId
+      description: The id of the customer.
+      type: Number
+
+    CustomerName:
+      displayName: CustomerName
+      description: The name of the customer.
+      type: String

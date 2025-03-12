@@ -15,8 +15,7 @@ This cloud flow returns a list of orders for a particular customer. To make sure
 | Display Name | Get orders for a customer |
 | Description for the agent to know when to use this action | Use this action when a customer asks questions about their orders, such as "what is my latest order" or "what products did I order". Only call this action when the customerId is already known, if not, first identify the customer using the identify topic. |
 | Ask the user for confirmation | Leave this unchecked. |
-| CustomerId (Inputs tab): How should the agent fill this input? | Set as value. |
-| CustomerId (Inputs tab): Value | `Text(Global.CustomerId)` |
+| CustomerId (Inputs tab): Description | Always fill this with the customer id, which is a number, no additional details should be added in this field. |
 | Orders (Outputs tab): Description | Contains a json array of orders and products for each order. The orderNumber should always be provided to the user as this is an identifier, however the orderline number is not relevant for the user and should not be used.  |
 
 After configuring, we will not use the action just yet, so you can continue to the next exercise.

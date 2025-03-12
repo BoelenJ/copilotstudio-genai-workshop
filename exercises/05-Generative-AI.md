@@ -16,14 +16,14 @@ This description is used by the planner capability of the agent that we enabled 
 
 > This topic is used to identify a customer and should be triggered when the customer wants to get details about their orders and the customerID is not yet known. When the customer only wants generic product information and the customerID is not relevant, this topic should not yet be triggered.
 
-Next, also remove the welcome message we added in step 3, as this is not necessary for now and will only confuse the end-user.
+Next, also remove the welcome message we added in exercise 3, as this is not necessary for now and will only confuse the end-user.
 
 ## Explore the new capabilities
 
-Now we are ready to explore the new planner capabilities. The agent will be able to create a plan of actions/tools that should be used to answer a customer question, after which it will create a single response that answers the question. As this can be a bit vague, let's walk through a couple of examples:
+Now we are ready to explore the new planner capabilities. The agent will be able to create a plan of actions/tools that should be used to answer a customer question, after which it will create a single response that answers the question. As this can be a bit difficult to understand, let's walk through a couple of examples:
 
 ### 1. Simple question about the warranty
-Similar to how we tested asking a question about products in exercise 1, we can still do that here. Let's start with this basic scenario and ask the agent the following question `What is the warranty for hiking sandals?`. Notice that the UI changed a bit, and we see an activity map that highlights all the steps the agent takes to answer the user question. Since this is a simple one-shot question, there is only one step, namely looking into the knowledge sources.
+Similar to how we tested asking a question about products in exercise 2, we can still do that here. Let's start with this basic scenario and ask the agent the following question `What is the warranty for hiking sandals?`. Notice that the UI changed a bit, and we see an activity map that highlights all the steps the agent takes to answer the user question. Since this is a simple one-shot question, there is only one step, namely looking into the knowledge sources.
 
 ![Sample one](../media/10-Orchestration-Sample-1.png)
 

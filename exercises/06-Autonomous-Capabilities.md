@@ -25,17 +25,16 @@ In the provided solution, another cloud flow is provided called "Contoso Outdoor
 
 > Note that this flow will always use the email davidkim@example.com, instead of the actual sender of the mail, as we are using fake email addresses.
 
-- This action will not save the id of the user in a global variable like we did before, so also revisit the previous get orders action and let the LLM fill the value of the customerId on its own, instead of having it fill it based on the value of the global variable.
-- Also revisit the identify customer topic and pass the customerId as output value by opening the topic, selecting the details button on the right top and creating a new output variable. This output variable can be used by the planner capability of the agent.
-- While editing the identify customer topic, also adjust the description of the topic to make sure this topic never gets triggered when the agent is called from the cloud flow.
-
 
 ### Send email action
 
 Next we want to provide the agent the capability of sending emails. For this, we can use the built-in Office 365 Outlook connector. Go to the actions tab again and search for the "Send an Email (V2)" action of the Office 365 Outlook connector.
 
 Just as before, provide a useful description of what the action does and when it should be used:
-> This action should be used to respond to user queries via email, so when the conversation gets triggered based on an email, always end with this action to send a reply to the user that started the conversation. Never use this for a regular chat.
+
+```
+This action should be used to respond to user queries via email, so when the conversation gets triggered based on an email, always end with this action to send a reply to the user that started the conversation. Never use this for a regular chat.
+```
 
 > Set the authentication to copilot author authentication!
 

@@ -11,17 +11,18 @@ Each agent you create in Copilot Studio comes with default topics, called system
 
 ## Adding a custom topic
 
-Imagine we want to provide our customers with the functionality to place an order and ask questions about their existing orders. Currently we don't have any order functionality yet, but we will created this later on. However, one prerequisite for this is that our customers need to identify themselves. For this exercise, we will create a topic that will ask the customer a few questions to identify themselves, after which we can check if the customer is in the system.
+Imagine we want to provide our customers with the functionality to place an order and ask questions about their existing orders. Currently we don't have any order functionality yet, but we will create this later on. However, one prerequisite for this is that our customers need to identify themselves. For this exercise, we will create a topic that will ask the customer a few questions to identify themselves, after which we can check if the customer is in our system.
 
 > For production scenario's, this way of identifying is most likely not secure enough, but this is mostly for demo purposes.
 
-1. Start by clicking on add topic -> start from blank.
-2. Edit the trigger phrases, these phrases help the agent to identify when this topic should be triggered. In a later exercise, we will change the approach, so for now, only add a single trigger phrase: "identify". Note that this is only because we will move away from this in a later exercise, if you are actually using trigger phrases in a real use-case, refer to this documentation for best practices: [trigger phrases best practices](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/trigger-phrases-best-practices).
-3. Start with a simple message node to notify the user that we will require some information, such as "To identify you as a customer, we need to ask you for some information.".
-4. Add two question nodes, to get the email of the user and the postal code. These will be used to identify the end-user. Note the option to save the user response as the full response, change this to email in the first question and number for the postal code question (see below).
-5. After the questions, add an action and select a cloud flow called "Contoso Outdoor | Get Customer Details", this flow mimics a back-end system and looks up the customer based on the inputs you provide. Note that this flow takes in two arguments, the email and the postal code. For the postal code, you need to cast the number value to a string using powerFX: `Text(Topic.PostalCode)`.
-6. The flow returns the customer name and id, if no customer is found, the customer name will be NOTFOUND. Add a condition in the conversation flow to capture this. When a customer name is found, greet the user by using their name.
-7. Finally, save the two values returned from the cloud flow as global variables, as these will be useful later on.
+1. Start by clicking on `add topic` -> `start from blank`.
+2. Edit the trigger phrases, these phrases help the agent to identify when this topic should be triggered. In a later exercise, we will change the approach, so for now, only add a single trigger phrase: "`identify`". Note that this is only because we will move away from this in a later exercise, if you are actually using trigger phrases in a real use-case, refer to this documentation for best practices: [trigger phrases best practices](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/trigger-phrases-best-practices).
+3. Add a `message` node by clicking on the plus icon below the trigger. Add the following text: `To identify you as a customer, we need to ask you for some information.`.
+4. Add two question nodes, one to get the email of the user and one to get the postal code. These will be used to identify the end-user. `Note the option to save the user response as the full response, change this to email in the first question and number for the postal code question (see below).`
+5. After the questions, add an action and select a cloud flow called `Contoso Outdoor | Get Customer Details`, this flow mimics a back-end system and looks up the customer based on the inputs you provide. Note that this flow takes in two arguments, the email and the postal code. For the postal code, you need to cast the number value to a string using powerFX: `Text(Topic.<name of the postal code variable>)`.
+6. The flow returns the customer name and id, if no customer is found, the customer name will be NOTFOUND. `Add a condition` in the conversation flow to capture this. When a customer name is found, greet the user by using their name by using a message node.
+7. We need to save the variables so they can be used later on. To do so, go to the outputs of the action (step 5) and for both variables, click on the variable, rename it and underneath the usage section, enable `Return values to original topics`. This will make the variables available during the conversation.
+8. You can verify this by going to the `details` section of the topic (next to the save button) and look for the output section. This should display the variables you selected in step 7. You can already provide a useful description of the variables here.
 
 ![Sample question](../media/06-Sample-Question.png)
 
